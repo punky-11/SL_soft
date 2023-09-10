@@ -6,7 +6,9 @@
   "scripts": {
     "test": "start",
     "dev": "nodemon index.js",
-    "start": "node index"
+    "start": "node index",
+    "lint-fix": "eslint . --ext .js --fix",
+    "lint": "eslint .  --ext .js"
   },
   "repository": {
     "type": "git",
