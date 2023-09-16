@@ -11,10 +11,10 @@ exports.agregarD = async (agregarDatos) => {
   }
 };
 // buscra productos
-exports.buscarP = async () => {
+exports.buscarP = async (filtro) => {
   try {
-    const productos = await Producto.find();
-    console.log('pasa por aqui');
+    const productos = await Producto.find(filtro);
+    console.log('pasa por aqui buscando productos');
     return productos;
   } catch (error) {
     console.log(error);
@@ -31,6 +31,12 @@ exports.eliminarP = async (id) => {
   }
 };
 exports.actualizarP = async (id, actualizarDatos) => {
-  const actualizar = await Producto.findByIdAndUpdate(id, _actualizarDatos);
-  return actualizar;
+  try {
+    console.log(id);
+    const actualizar = await Producto.findByIdAndUpdate(id, actualizarDatos);
+    return actualizar;
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
 };
