@@ -14,7 +14,6 @@ exports.agregarD = async (agregarDatos) => {
 exports.buscarP = async (filtro) => {
   try {
     const productos = await Producto.find(filtro);
-    console.log('pasa por aqui buscando productos');
     return productos;
   } catch (error) {
     console.log(error);

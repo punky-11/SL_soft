@@ -24,7 +24,7 @@ const PORT= process.env.PORT || 8080;
 
 // ruta
 const router = require('./backend/routes/ruta.ventas');
-app.use('/api/', router);
+app.use('/v1/', router);
 
 
 // puesto

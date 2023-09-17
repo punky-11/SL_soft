@@ -2,18 +2,25 @@ const Datos = require('../data-access/date.productos');
 // agregar productos
 exports.agregarProductos = async (req, res) => {
   try {
-    const referencia = {referencia: req.params.referencia};
-    const validarProductos = await Datos.buscarP(referencia);
-    if (validarProductos !== null ) {
-      res.json({message: 'El producto ya existe'});
-    } else {
+    const filtro = {referencia: req.body.referencia};
+    const validarProductos = await Datos.buscarP(filtro);
+    console.log(validarProductos);
+    if (validarProductos.length == 0 ) {
+      const cantidadTalla = req.body.talla;
+      let cantidadTotal = 0;
+      for (const key in cantidadTalla) {
+        if (cantidadTalla.hasOwnProperty(key)) {
+          cantidadTotal += cantidadTalla[key];
+        }
+      }
       const agregarDatos = {
         nombre: req.body.nombre,
         talla: req.body.talla,
         referencia: req.body.referencia,
-        cantidad: req.body.cantidad,
+        cantidad: cantidadTotal,
         precio: req.body.precio,
         descripcion: req.body.descripcion,
+        categoria: req.body.categoria,
 
       };
 
@@ -24,6 +31,8 @@ exports.agregarProductos = async (req, res) => {
       } else {
         res.status(500).json({message: 'No se pudo agregar el producto'});
       }
+    } else {
+      res.json({message: 'El producto ya existe'});
     }
   } catch (error) {
     console.log(error);

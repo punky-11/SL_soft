@@ -26,7 +26,8 @@ const shemnaClientes = new mongoose.Schema({
     default: 'Sin registrar direccion',
   },
   usuario: {
-    type: Object(),
+    type: mongoose.Schema.Types.ObjectId,
+    ref: usurios.model,
     required: [true, 'Se requiere un id de usuario'],
   },
 

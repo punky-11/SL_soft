@@ -1,5 +1,3 @@
-// const mongoose = require('mongoose');
-
 const mongoose = require('../config/config');
 
 const productosSchema = new mongoose.Schema({
@@ -9,7 +7,7 @@ const productosSchema = new mongoose.Schema({
     min: 4,
   },
   talla: {
-    type: String,
+    type: Object,
     required: [true, 'es requeriodo talla'],
     max: 5,
     min: 1,
@@ -36,8 +34,7 @@ const productosSchema = new mongoose.Schema({
   },
   categoria: {
     type: String,
-    // required: [true, 'es requeriodo la categoria'],
-
+    required: [true, 'es requeriodo la categoria'],
   },
 }, {timestamps: true});
 const producto =mongoose.model('producto', productosSchema);
