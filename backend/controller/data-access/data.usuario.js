@@ -24,13 +24,11 @@ exports.eliminarUsuario = async (id) => {
   try {
     const eliminar = await Usuario.findByIdAndDelete(id);
     return eliminar;
-  }
-  catch (error) {
+  } catch (error) {
     console.log(error);
     throw error;
   }
-
-}
+};
 
 exports.actualizarUsuario = async (id, actualizarDatos) => {
   try {
@@ -40,4 +38,4 @@ exports.actualizarUsuario = async (id, actualizarDatos) => {
     console.log(error);
     throw error;
   }
-}
+};

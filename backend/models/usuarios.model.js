@@ -1,9 +1,9 @@
 const mongoose = require('../config/config');
 const SchemaUsuarios = new mongoose.Schema({
 
-  __di : {
+  __di: {
     type: Object,
-    //require: [true, 'Se requiere un id'],
+    // require: [true, 'Se requiere un id'],
   },
   email: {
     type: String,
@@ -15,7 +15,7 @@ const SchemaUsuarios = new mongoose.Schema({
   },
   rol: {
     type: String,
-    //require: [true, 'Se requiere un rol'],
+    // require: [true, 'Se requiere un rol'],
   },
 
 });

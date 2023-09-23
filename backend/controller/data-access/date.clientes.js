@@ -5,7 +5,7 @@ exports.agregarC = async (agragarCliente) => {
     const nuevoCliente = new Clientes(agragarCliente);
     console.log(nuevoCliente._id);
     const nuevoCliente1 = await nuevoCliente.save();
-    
+
     return nuevoCliente1;
   } catch (error) {
     console.log(error);
@@ -26,13 +26,11 @@ exports.eliminarC = async (id) => {
   try {
     const eliminar = await Clientes.findByIdAndDelete(id);
     return eliminar;
-  }
-  catch (error) {
+  } catch (error) {
     console.log(error);
     throw error;
   }
-
-}
+};
 exports.actualizarC = async (id, actualizarDatos) => {
   try {
     const actualizar = await Clientes.findByIdAndUpdate(id, actualizarDatos);
@@ -41,4 +39,4 @@ exports.actualizarC = async (id, actualizarDatos) => {
     console.log(error);
     throw error;
   }
-}
+};
