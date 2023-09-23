@@ -10,5 +10,8 @@ router.post('/actualizarProductos/:id', productos.actualizarProductos);
 router.post('/eliminarProductos/:id', productos.eliminarProductos);
 
 router.post('/agregarCliente', cliente.agregarClientes);
+router.get('/buscarCliente', cliente.buscarClientes);
+router.post('/eliminarClientes/:id', cliente.eliminarClientes);
+router.post('/actualizarClientes/:id', cliente.actualizarClientes);
 
 module.exports=router;

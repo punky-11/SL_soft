@@ -1,5 +1,5 @@
 const mongoose = require('../config/config');
-const shemnaClientes = new mongoose.Schema({
+const SchemaClientes = new mongoose.Schema({
 
   nombre: {
     type: String,
@@ -27,12 +27,12 @@ const shemnaClientes = new mongoose.Schema({
   },
   usuario: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: usurios.model,
-    required: [true, 'Se requiere un id de usuario'],
+    ref: 'usurios.model',
+    // required: [true, 'Se requiere un usuario'],
   },
 
-  timestamps: true,
 
-});
+}, {timestamps: true});
 
-module.exports = mongoose.model('Factura', shemnaClientes);
+const Cliente =mongoose.model('Cliente', SchemaClientes);
+module.exports =Cliente;
