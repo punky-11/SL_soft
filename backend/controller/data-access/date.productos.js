@@ -31,7 +31,6 @@ exports.eliminarP = async (id) => {
 };
 exports.actualizarP = async (id, actualizarDatos) => {
   try {
-    console.log(id);
     const actualizar = await Producto.findByIdAndUpdate(id, actualizarDatos);
     return actualizar;
   } catch (error) {

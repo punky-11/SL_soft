@@ -19,7 +19,7 @@ const productosSchema = new mongoose.Schema({
     min: 4,
   },
   cantidad: {
-    type: String,
+    type: Number,
     required: [true, 'es requeriodo la cantadad'],
     min: [1, 'debe ser mayor a 1 '],
   },

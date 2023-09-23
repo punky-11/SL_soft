@@ -43,7 +43,7 @@ exports.buscarProductos = async (req, res) => {
   try {
     const filtro = req.body;
     const productos = await Datos.buscarP(filtro);
-    res.json({productos: productos});
+    res.status(200).json({productos: productos});
   } catch (error) {
     console.log(error);
   }
@@ -61,8 +61,7 @@ exports.actualizarProductos = async (req, res) => {
       precio: req.body.precio,
       descripcion: req.body.descripcion,
     };
-    console.log(actualizarDatos);
-    // const actualizar = await Datos.actualizarP(id, actualizarDatos);
+
     await Datos.actualizarP(id, actualizarDatos);
     res.json({message: 'Producto actualizado con éxito'});
   } catch (error) {
@@ -74,7 +73,6 @@ exports.actualizarProductos = async (req, res) => {
 exports.eliminarProductos = async (req, res) => {
   try {
     const id = {_id: req.params.id};
-    console.log(req.params.id);
     // const eliminar = await Datos.eliminarP(id);
     await Datos.eliminarP(id);
     res.json({message: 'Producto eliminado con éxito'});

@@ -30,9 +30,9 @@ exports.eliminarUsuario = async (id) => {
   }
 };
 
-exports.actualizarUsuario = async (id, actualizarDatos) => {
+exports.actualizarUsuario = async (id, actualizaru) => {
   try {
-    const actualizar = await Usuario.findByIdAndUpdate(id, actualizarDatos);
+    const actualizar = await Usuario.findByIdAndUpdate(id, actualizaru);
     return actualizar;
   } catch (error) {
     console.log(error);

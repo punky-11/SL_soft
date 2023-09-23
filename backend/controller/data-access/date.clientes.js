@@ -3,7 +3,6 @@ const Clientes = require('../../models/clientes.models');
 exports.agregarC = async (agragarCliente) => {
   try {
     const nuevoCliente = new Clientes(agragarCliente);
-    console.log(nuevoCliente._id);
     const nuevoCliente1 = await nuevoCliente.save();
 
     return nuevoCliente1;

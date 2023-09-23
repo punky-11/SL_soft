@@ -6,7 +6,7 @@ exports.agregarClientes = async (req, res) => {
   try {
     const correoElectronico = {email: req.body.email};
     const validarCorreo = await datos.buscarClientes(correoElectronico);
-    console.log(validarCorreo);
+
     if (validarCorreo.length == 0) {
       const agragarCliente = {nombre, apellido, documento, celular, direccion, email} = req.body;
       const validacion = await datos.agregarC(agragarCliente);
@@ -71,14 +71,22 @@ exports.eliminarClientes = async (req, res) => {
 exports.actualizarClientes = async (req, res) => {
   try {
     const id = req.params.id;
-    const actualizarDatos = {nombre, apellido, documento, celular, direccion, email} = req.body;
-    console.log("holi");
-    const actualizaru = {password: req.body.password, email: req.body.email};
-    const actualizar = await datos.actualizarC(id, actualizarDatos) && await datosUsuario.actualizarUsuario(id, actualizaru);
-    if (actualizar) {
-      res.status(200).json({message: 'Cliente actualizado con éxito'});
-    } else {
-      res.status(500).json({message: 'No se pudo actualizar el cliente'});
+    if (id) {
+      const actualizarCliente = {
+        nombre: req.body.nombre,
+        apellido: req.body.apellido,
+        documento: req.body.documento,
+        celular: req.body.celular,
+        direccion: req.body.direccion,
+        email: req.body.email,
+      };
+      const actualizaru = {password: req.body.password, email: req.body.email};
+      const actualizar = await datos.actualizarC(id, actualizarCliente) && await datosUsuario.actualizarUsuario(id, actualizaru);
+      if (actualizar) {
+        res.status(200).json({message: 'Cliente actualizado con éxito'});
+      } else {
+        res.status(500).json({message: 'No se pudo actualizar el cliente'});
+      }
     }
   } catch (error) {
     console.log(error);
