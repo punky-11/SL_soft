@@ -12,9 +12,9 @@ exports.agregarC = async (agragarCliente) => {
     throw error;
   }
 };
-exports.buscarClientes = async (filtro, option) => {
+exports.buscarClientes = async (filtro) => {
   try {
-    const clientes = await Clientes.find(filtro, option);
+    const clientes = await Clientes.find(filtro);
     if (clientes.length > 0) {
       return clientes;
     } else {
