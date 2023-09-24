@@ -1,3 +1,4 @@
+const { json } = require('express');
 const Clientes = require('../../models/clientes.models');
 
 exports.agregarC = async (agragarCliente) => {
@@ -11,10 +12,14 @@ exports.agregarC = async (agragarCliente) => {
     throw error;
   }
 };
-exports.buscarClientes = async (filtro) => {
+exports.buscarClientes = async (filtro, option) => {
   try {
-    const clientes = await Clientes.find(filtro);
-    return clientes;
+    const clientes = await Clientes.find(filtro, option);
+    if (clientes.length > 0) {
+      return clientes;
+    } else {
+      return ('error en el servidor');
+    }
   } catch (error) {
     console.log(error);
     throw error;
