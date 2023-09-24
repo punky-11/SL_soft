@@ -7,9 +7,10 @@ exports.agregarClientes = async (req, res) => {
     const correoElectronico = {email: req.body.email};
     const validarCorreo = await datos.buscarClientes(correoElectronico);
 
-    if (validarCorreo.length == 0) {
+    if (validarCorreo) {
       const agragarCliente = {nombre, apellido, documento, celular, direccion, email} = req.body;
       const validacion = await datos.agregarC(agragarCliente);
+
 
       if (validacion) {
         res.status(200).json({message: 'Cliente agregado con éxito'});
@@ -20,8 +21,9 @@ exports.agregarClientes = async (req, res) => {
 
       // guardar usuario
       const correUsuario = {email: req.body.email};
+      console.log(correUsuario);
       const validarCorreo = await datosUsuario.buscarUsuario(correUsuario);
-      if (validarCorreo.length == 0) {
+      if (validarCorreo) {
         const agragarU = {'_id': validacion._id,
           'password': req.body.password,
           'email': req.body.email,

@@ -13,7 +13,11 @@ exports.agregarUsuario = async (agragarU) => {
 exports.buscarUsuario = async (filtro) => {
   try {
     const usuarios = await Usuario.find(filtro);
-    return usuarios;
+    if (usuarios.length > 0) {
+      return usuarios;
+    } else {
+      return ('error en el servidor');
+    }
   } catch (error) {
     console.log(error);
     throw error;
