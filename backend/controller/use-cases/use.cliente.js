@@ -45,9 +45,13 @@ exports.agregarClientes = async (req, res) => {
 
 exports.buscarClientes = async (req, res) => {
   try {
-    const filtro = req.body;
-    const clientes = await datos.buscarClientes(filtro);
-    res.json({clientes: clientes});
+    const filtro = {email: req.body.email};
+    const usuario = await datosUsuario.buscarUsuario(filtro);
+    if (usuario) {
+      res.status(200).json({cliente: cliente});
+    } else {
+      res.status(500).json({message: 'No se pudo encontrar los datos del cliente'});
+    }
   } catch (error) {
     console.log(error);
   }

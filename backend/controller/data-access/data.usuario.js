@@ -5,7 +5,7 @@ exports.agregarUsuario = async (agragarU) => {
   try {
     const salt = await bcrypt.genSalt(10);
     agragarU.password = await bcrypt.hash(agragarU.password, salt);
-    
+
     const nuevoUsuario = new Usuario(agragarU);
     const nuevoUsuario1 = await nuevoUsuario.save();
     return nuevoUsuario1;
@@ -20,7 +20,7 @@ exports.buscarUsuario = async (filtro) => {
     if (usuarios.length > 0) {
       return usuarios;
     } else {
-      return ('error en el servidor');
+      return ('Error en el servidor de usuarios');
     }
   } catch (error) {
     console.log(error);

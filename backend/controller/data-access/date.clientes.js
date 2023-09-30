@@ -1,4 +1,3 @@
-const { json } = require('express');
 const Clientes = require('../../models/clientes.models');
 
 exports.agregarC = async (agragarCliente) => {
@@ -18,7 +17,7 @@ exports.buscarClientes = async (filtro) => {
     if (clientes.length > 0) {
       return clientes;
     } else {
-      return ('error en el servidor');
+      return ('Error en el servidor de clientes');
     }
   } catch (error) {
     console.log(error);
