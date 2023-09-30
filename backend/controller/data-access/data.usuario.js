@@ -1,7 +1,11 @@
 const Usuario = require('../../models/usuarios.model');
+const bcrypt = require('bcrypt');
 
 exports.agregarUsuario = async (agragarU) => {
   try {
+    const salt = await bcrypt.genSalt(10);
+    agragarU.password = await bcrypt.hash(agragarU.password, salt);
+    
     const nuevoUsuario = new Usuario(agragarU);
     const nuevoUsuario1 = await nuevoUsuario.save();
     return nuevoUsuario1;

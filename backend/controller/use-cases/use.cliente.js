@@ -18,7 +18,6 @@ exports.agregarClientes = async (req, res) => {
         res.status(500).json({message: 'No se pudo agregar el cliente'});
       }
 
-
       // guardar usuario
       const correUsuario = {email: req.body.email};
       console.log(correUsuario);
