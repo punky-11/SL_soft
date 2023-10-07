@@ -41,5 +41,6 @@ router.post('/actualizarClientes/:id', cliente.actualizarClientes);
  *        rol: cliente
  *
  */
+
 router.post('/login', usuario.login);
 module.exports=router;
