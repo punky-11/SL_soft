@@ -1,8 +1,6 @@
 const Usuario = require('../../models/usuarios.model');
 const bcrypt = require('bcrypt');
-// suagger
-const swaggerUI = require('swagger-ui-express');
-const swaggerJsDoc = require('swagger-jsdoc');
+
 
 exports.agregarUsuario = async (agragarU) => {
   try {

@@ -1,7 +1,7 @@
 const mongoose = require('../config/config');
 const SchemaUsuarios = new mongoose.Schema({
 
-  __di: {
+  _di: {
     type: Object,
     // require: [true, 'Se requiere un id'],
   },
