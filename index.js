@@ -7,7 +7,7 @@ const swaggerJsDoc = require('swagger-jsdoc');
 const path = require('path');
 const swaggerOptions = {
   definition: {
-    openapi: '3.0.0',
+    openapi: '3.1.0',
     info: {
       title: 'tienda virtual sl-soft',
       version: '1.0.0',

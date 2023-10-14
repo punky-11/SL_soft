@@ -5,36 +5,25 @@ const datosUsuario = require('../data-access/data.usuario');
 exports.agregarClientes = async (req, res) => {
   try {
     const correoElectronico = {email: req.body.email};
-    const validarCorreo = await datos.buscarClientes(correoElectronico);
+    const validarCorreo = await datos.buscarClientes(correoElectronico) ;
 
     if (validarCorreo) {
       const agragarCliente = {nombre, apellido, documento, celular, direccion, email} = req.body;
-      const validacion = await datos.agregarC(agragarCliente);
 
+       await datos.agregarC(agragarCliente);
 
-      if (validacion) {
-        res.status(200).json({message: 'Cliente agregado con éxito'});
-      } else {
-        res.status(500).json({message: 'No se pudo agregar el cliente'});
+      const agregarUsuario = correoElectronico 
+      const validarCorreoUsuario = await datosUsuario.buscarUsuario(agregarUsuario);
+
+      if (validarCorreoUsuario) {
+        const agregarUsuario = {password, email} = req.body;
+        await datosUsuario.agregarUsuario(agregarUsuario);
+        res.status(200).json({message: 'Cliente agregado con éxito'} && {message: 'Usuario agregado con éxito'});
+      } else {      
+        res.status(500).json({message: 'No se pudo agregar el usuario'});
       }
 
-      // guardar usuario
-      const correUsuario = {email: req.body.email};
-      console.log(correUsuario);
-      const validarCorreo = await datosUsuario.buscarUsuario(correUsuario);
-      if (validarCorreo) {
-        const agragarU = {'_id': validacion._id,
-          'password': req.body.password,
-          'email': req.body.email,
-          'rol': 'cliente',
-        };
-        const validacion1 = await datosUsuario.agregarUsuario(agragarU);
-        if (validacion1) {
-          res.status(200).json({message: 'Usuario agregado con éxito'});
-        } else {
-          res.status(500).json({message: 'No se pudo agregar el usuario'});
-        }
-      }
+
     } else {
       res.json({message: 'El cliente ya existe'} && {message: 'El usuario ya existe'});
     }
@@ -46,9 +35,10 @@ exports.agregarClientes = async (req, res) => {
 exports.buscarClientes = async (req, res) => {
   try {
     const filtro = {email: req.body.email};
-    const usuario = await datosUsuario.buscarUsuario(filtro);
+    
+    const usuario = await datos.buscarClientes(filtro);
     if (usuario) {
-      res.status(200).json({cliente: cliente});
+      res.status(200).json({cliente: usuario});
     } else {
       res.status(500).json({message: 'No se pudo encontrar los datos del cliente'});
     }
@@ -60,8 +50,8 @@ exports.buscarClientes = async (req, res) => {
 
 exports.eliminarClientes = async (req, res) => {
   try {
-    const id = req.params.id;
-    const eliminar = await datos.eliminarC(id) && await datosUsuario.eliminarUsuario(id);
+    const id = req.body.id;
+    const eliminar = await datos.eliminarC(id) 
 
     if (eliminar) {
       res.status(200).json({message: 'Cliente eliminado con éxito'});
