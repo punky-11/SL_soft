@@ -31,8 +31,14 @@ exports.buscarUsuario = async (filtro) => {
 
 exports.eliminarUsuario = async (id) => {
   try {
+    
     const eliminar = await Usuario.findByIdAndDelete(id);
-    return eliminar;
+    console.log(eliminar);
+    if (!eliminar) {
+      return ('Error en el servidor de usuarios');
+    }else{ 
+      return eliminar;
+    }
   } catch (error) {
     console.log(error);
     throw error;

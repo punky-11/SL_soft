@@ -27,8 +27,14 @@ exports.buscarClientes = async (filtro) => {
 
 exports.eliminarC = async (id) => {
   try {
+    
     const eliminar = await Clientes.findByIdAndDelete(id);
-    return eliminar;
+    console.log(eliminar);
+    if (!eliminar) {
+      return ('Error en el servidor de clientes');
+    }else{ 
+      return eliminar;
+    }
   } catch (error) {
     console.log(error);
     throw error;

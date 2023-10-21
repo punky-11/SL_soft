@@ -93,7 +93,7 @@ router.post('/agregarCliente', cliente.agregarClientes);
 router.get('/buscarCliente', cliente.buscarClientes);
 /**
  * @swagger
- * /v1/eliminarClientes/{id}:
+ * /v1/eliminarClientes/:`{id}`:
  *  post:
  *   summary: eliminar un cliente
  *   tags: [cliente]
@@ -115,7 +115,32 @@ router.get('/buscarCliente', cliente.buscarClientes);
  *       description: error al eliminar cliente 
  */     
 router.post('/eliminarClientes/:id', cliente.eliminarClientes);
+/**
+ * @swagger
+ * /v1/eliminarClientes/:`{id}`:
+ *  post:
+ *   summary: eliminar un cliente
+ *   tags: [cliente]
+ *   requestBody:
+ *    required: true
+ *    content:
+ *     application/json:
+ *      schema:
+ *       type: object
+ *       properties:
+ *        id:
+ *         type: ObjectId
+ *       example:
+ *        id: 5f9c0c6e0f1a8d0c6c3e6a7a
+ *   responses:
+ *     200:
+ *       description: se elimino el cliente
+ *     500:
+ *       description: error al eliminar cliente 
+ */     
 router.post('/actualizarClientes/:id', cliente.actualizarClientes);
 // usuario
 router.post('/login', usuario.login);
 module.exports=router;
+
+

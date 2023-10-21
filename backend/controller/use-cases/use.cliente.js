@@ -10,19 +10,20 @@ exports.agregarClientes = async (req, res) => {
     if (validarCorreo) {
       const agragarCliente = {nombre, apellido, documento, celular, direccion, email} = req.body;
 
-       await datos.agregarC(agragarCliente);
-
+      const datosGuardar = await datos.agregarC(agragarCliente);
+      
       const agregarUsuario = correoElectronico 
+      console.log(datosGuardar._id);
       const validarCorreoUsuario = await datosUsuario.buscarUsuario(agregarUsuario);
 
       if (validarCorreoUsuario) {
-        const agregarUsuario = {password, email} = req.body;
-        await datosUsuario.agregarUsuario(agregarUsuario);
+        const agregarUsuario = {rol: 'cliente', password: req.body.password, email: req.body.email,  _id:datosGuardar._id};
+        const datosCliente1 = await datosUsuario.agregarUsuario(agregarUsuario);
+        console.log(datosCliente1._id);
         res.status(200).json({message: 'Cliente agregado con éxito'} && {message: 'Usuario agregado con éxito'});
       } else {      
         res.status(500).json({message: 'No se pudo agregar el usuario'});
       }
-
 
     } else {
       res.json({message: 'El cliente ya existe'} && {message: 'El usuario ya existe'});
@@ -51,8 +52,9 @@ exports.buscarClientes = async (req, res) => {
 exports.eliminarClientes = async (req, res) => {
   try {
     const id = req.body.id;
-    const eliminar = await datos.eliminarC(id) 
-
+    
+    const eliminar = await datos.eliminarC(id) && await datosUsuario.eliminarUsuario(id);
+    
     if (eliminar) {
       res.status(200).json({message: 'Cliente eliminado con éxito'});
     } else {
@@ -87,3 +89,4 @@ exports.actualizarClientes = async (req, res) => {
     console.log(error);
   }
 };
+
